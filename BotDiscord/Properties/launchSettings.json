@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BotDiscord": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ok": "ok"
+      }
+    }
+  }
+}
