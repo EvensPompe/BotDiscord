@@ -52,6 +52,16 @@ namespace BotDiscord
                 await message.Channel.SendMessageAsync("pong");
             }
 
+            if (message.Content.ToLower() == "!help")
+            {
+                string helpMessage = "Voici la liste des commandes disponible pour le moment :\n" +
+                    "- '!salut':Saluer le bot !\n" +
+                    "- '!ping':Le bot répondra 'pong'\n" +
+                    "- '!chesse': Chesse !!!!";
+
+                await message.Channel.SendMessageAsync(helpMessage);
+            }
+
             if (message.Content.ToLower() == "!chesse")
             {
                 var emoji = new Emoji("\uD83E\uDDC0");
