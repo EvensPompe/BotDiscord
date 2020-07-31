@@ -15,11 +15,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BotDiscord.Commands
 {
-    public class Manger : ModuleBase<SocketCommandContext>
+    public class Youtube : ModuleBase<SocketCommandContext>
     {
-        private string[] foodArray;
-        [Command("manger")]
-        public async Task MangerAsync()
+        [Command("youtube")]
+        public async Task YoutubeAsync(string ytbValue)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
@@ -27,13 +26,8 @@ namespace BotDiscord.Commands
                 ApplicationName = this.GetType().ToString()
             });
 
-            foodArray = new string[] { "Sushi", "Burger", "Ramen", "Tacos", "Jambon Beurre" };
-
-            int randomFood = new Random().Next(foodArray.Length);
-            string food = foodArray[randomFood];
-
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = food;
+            searchListRequest.Q = ytbValue;
             searchListRequest.MaxResults = 50;
 
             var searchListResponse = await searchListRequest.ExecuteAsync();
@@ -45,8 +39,8 @@ namespace BotDiscord.Commands
             {
                 if (index == randomIndex && searchResult.Id.Kind == "youtube#video")
                 {
-                    string resFoodVideo = "https://www.youtube.com/watch?v=" + searchResult.Id.VideoId;
-                    await ReplyAsync(resFoodVideo);
+                    string resYoutube = "https://www.youtube.com/watch?v=" + searchResult.Id.VideoId;
+                    await ReplyAsync(resYoutube);
                 }
                 index++;
             }
