@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Configuration;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Threading;
 
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Upload;
-using Google.Apis.Util.Store;
-using Google.Apis.YouTube.v3;
-using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BotDiscord
