@@ -4,10 +4,10 @@ using Discord.Commands;
 
 namespace BotDiscord.Commands
 {
-    public class Chesse : ModuleBase<SocketCommandContext>
+    public class Cheese : ModuleBase<SocketCommandContext>
     {
-        [Command("chesse")]
-        public async Task ChesseAsync()
+        [Command("cheese")]
+        public async Task CheeseAsync()
         {
             var emoji = new Emoji("\uD83E\uDDC0");
             await Context.Message.AddReactionAsync(emoji);
