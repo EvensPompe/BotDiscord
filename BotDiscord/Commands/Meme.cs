@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Net.Http;
 
@@ -13,14 +13,14 @@ namespace BotDiscord.Commands
         private HttpClient client;
         private HttpResponseMessage response;
         private HttpContent content;
-        private string url = "https://api.tenor.com/v1/search";
+        private string url = "https://tenor.googleapis.com/v2";
         [Command("Meme")]
         public async Task MemeAsync(string searchMeme)
         {
             try
             {
                 client = new HttpClient();
-                response = await client.GetAsync($"{url}?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit=50");
+                response = await client.GetAsync($"{url}/search?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit=50");
                 content =  response.Content;
                 var data = await content.ReadAsStringAsync();
                 if (content != null)
