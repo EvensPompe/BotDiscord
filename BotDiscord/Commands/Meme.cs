@@ -45,6 +45,7 @@ namespace BotDiscord.Commands
                         if (index == randomIndex)
                         {
                             await ReplyAsync(meme["url"].ToString());
+                            break;
                         }
                         index++;
                     }
