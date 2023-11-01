@@ -64,7 +64,7 @@ namespace BotDiscord
             if (message.HasStringPrefix("!", ref argPos) || message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
                 var context = new SocketCommandContext(_client, message);
-
+                Console.WriteLine($"Channel \"{message.Channel}\" : {message.Author} has execute command : {message.Content} at {message.CreatedAt}");
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
                 if (!result.IsSuccess)
                     Console.WriteLine(result.ErrorReason);
