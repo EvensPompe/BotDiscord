@@ -15,18 +15,29 @@ namespace BotDiscord.Commands
         private HttpContent content;
         private string url = "https://tenor.googleapis.com/v2";
         [Command("Meme")]
-        public async Task MemeAsync(string searchMeme)
+        public async Task MemeAsync(string searchMeme, string limit = "10")
         {
             try
             {
+                int limitParsed;
+                if (!int.TryParse(limit, out limitParsed))
+                {
+                    await ReplyAsync("Utilisez un nombre pour la limite s'il vous plaît");
+                    return;
+                }
+                if(limitParsed < 10)
+                {
+                    await ReplyAsync("Mettez une limite supérieure ou égale à 10 s'il vous plaît");
+                    return;
+                }
                 client = new HttpClient();
-                response = await client.GetAsync($"{url}/search?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit=50");
+                response = await client.GetAsync($"{url}/search?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit={limitParsed}");
                 content =  response.Content;
                 var data = await content.ReadAsStringAsync();
                 if (content != null)
                 {
                     var dataJson = JObject.Parse(data);
-                    int randomIndex = new Random().Next(50);
+                    int randomIndex = new Random().Next(limitParsed);
                     int index = 0;
 
                     foreach (var meme in dataJson["results"])
