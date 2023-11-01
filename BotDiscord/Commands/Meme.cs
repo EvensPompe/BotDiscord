@@ -31,7 +31,7 @@ namespace BotDiscord.Commands
                     return;
                 }
                 client = new HttpClient();
-                response = await client.GetAsync($"{url}/search?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit={limitParsed}");
+                response = await client.GetAsync($"{url}/search?q={searchMeme}&key={Environment.GetEnvironmentVariable("TENOR_API_KEY")}&limit={limitParsed}&random=true");
                 content =  response.Content;
                 var data = await content.ReadAsStringAsync();
                 if (content != null)
