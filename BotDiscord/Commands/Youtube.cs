@@ -16,7 +16,7 @@ namespace BotDiscord.Commands
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
-                ApplicationName = this.GetType().ToString()
+                ApplicationName = GetType().ToString()
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
