@@ -18,7 +18,7 @@ namespace BotDiscord.Commands
             embed.AddField("cheese", "PONG !!!");
             embed.AddField("dit \"citation\"", "Faire dire la citation au bot (Attention au dérapage)!");
             embed.AddField("meme \"meme\" [\"limite\"]", "Afficher un meme aléatoirement, parmi le nombre limite. Si elle n'est pas défini, elle sera égale à 10 par défaut");
-            embed.AddField("youtube \"titre\"", "Afficher une vidéo youtube");
+            embed.AddField("youtube \"titre\" [\"limite\"]", "Afficher une vidéo youtube aléatoirement, parmi le nombre limite. Si elle n'est pas défini, elle sera égale à 20 par défaut");
             embed.AddField("addrole \"rôle\"", "Ajouter le rôle à l'utilisateur");
             embed.AddField("createrole \"rôle\"", "Créer un nouveau rôle");
             embed.AddField("roles", "Afficher la liste des rôles disponible");
