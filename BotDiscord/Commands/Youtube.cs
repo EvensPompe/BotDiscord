@@ -11,8 +11,19 @@ namespace BotDiscord.Commands
     public class Youtube : ModuleBase<SocketCommandContext>
     {
         [Command("youtube")]
-        public async Task YoutubeAsync(string ytbValue)
+        public async Task YoutubeAsync(string search, string limit = "10")
         {
+            int limitParsed;
+            if (!int.TryParse(limit, out limitParsed))
+            {
+                await ReplyAsync("Utilisez un nombre pour la limite s'il vous plaît");
+                return;
+            }
+            if(limitParsed < 10)
+            {
+                await ReplyAsync("Mettez une limite supérieure ou égale à 10 s'il vous plaît");
+                return;
+            }
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
             {
                 ApiKey = Environment.GetEnvironmentVariable("GOOGLE_API_KEY"),
@@ -20,12 +31,12 @@ namespace BotDiscord.Commands
             });
 
             var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = ytbValue;
-            searchListRequest.MaxResults = 50;
+            searchListRequest.Q = search;
+            searchListRequest.MaxResults = limitParsed;
 
             var searchListResponse = await searchListRequest.ExecuteAsync();
 
-            int randomIndex = new Random().Next(50);
+            int randomIndex = new Random().Next(limitParsed);
             int index = 0;
 
             foreach (var searchResult in searchListResponse.Items)
