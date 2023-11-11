@@ -24,6 +24,7 @@ namespace BotDiscord.Commands
             embed.AddField("roles", "Afficher la liste des rôles disponible");
             embed.AddField("updaterole \"ancien rôle\" \"nouveau rôle\"", "Modifier un rôle existant");
             embed.AddField("deleterole \"rôle\"", "Supprimer un rôle existant");
+            embed.AddField("getartist \"nom\"", "Afficher les information Spotify d'un artiste musical.");
             embed.WithColor(Color.Blue);
             return ReplyAsync("", false, embed.Build());
         }
